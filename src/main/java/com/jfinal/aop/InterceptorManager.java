@@ -150,7 +150,8 @@ public class InterceptorManager {
 		}
 		return createInterceptor(beforeAnnotation.value());
 	}
-	
+
+	//获取class级拦截器
 	public Interceptor[] createInterceptor(Class<? extends Interceptor>[] interceptorClasses) {
 		if (interceptorClasses == null || interceptorClasses.length == 0) {
 			return NULL_INTERS;

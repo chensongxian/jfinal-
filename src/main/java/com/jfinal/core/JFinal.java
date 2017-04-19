@@ -53,19 +53,29 @@ public final class JFinal {
 	public static JFinal me() {
 		return me;
 	}
-	
+
+	/**
+	 * 框架初始化
+	 * @param jfinalConfig 配置类
+	 * @param servletContext servlet上下文
+	 * @return
+	 */
 	boolean init(JFinalConfig jfinalConfig, ServletContext servletContext) {
 		this.servletContext = servletContext;
 		this.contextPath = servletContext.getContextPath();
-		
+		//初始化contextPath路径
 		initPathUtil();
-		
+		//初始化配置
 		Config.configJFinal(jfinalConfig);	// start plugin, init log factory and init engine in this method
+		//获得常量值
 		constants = Config.getConstants();
-		
+		//初始化action映射即路由
 		initActionMapping();
+		//初始化处理器
 		initHandler();
+		//初始化渲染引擎
 		initRender();
+		//文件上传
 		initOreillyCos();
 		initTokenManager();
 		

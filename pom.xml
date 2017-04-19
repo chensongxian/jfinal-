@@ -71,6 +71,16 @@
 			<version>8.1.8.v20121106</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.jfinal</groupId>
+			<artifactId>jetty-server</artifactId>
+			<version>8.1.8</version>
+			<!--
+                此处的 scope 值为 compile 仅为支持 IDEA 下启动项目
+                打 war 包时需要改成 provided，以免将一些无用的 jar 打进去
+            -->
+			<scope>compile</scope>
+		</dependency>
 		<!-- cos -->
 		<dependency>
 			<groupId>com.mchange</groupId>
@@ -82,7 +92,7 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.0.5</version>
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>
@@ -138,13 +148,13 @@
 			<scope>provided</scope>
 		</dependency>
 		
-		<!--
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.20</version>
 		</dependency>
-		-->
+
 		
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -173,7 +183,7 @@
 		 </dependency>
 		 
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -186,39 +196,7 @@
 				</configuration>
 			</plugin>
 
-<!-- 安装源码到本地仓库 -->
-<!-- plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-source-plugin</artifactId>
-	<version>2.1.2</version>
-	<executions>
-		<execution>
-			<id>attach-sources</id>
-			<phase>verify</phase>
-			<goals>
-				<goal>jar-no-fork</goal>
-			</goals>
-		</execution>
-	</executions>
-</plugin -->
 
-			<!-- plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.1</version>
-				<executions>
-				  <execution>
-					<id>sign-artifacts</id>
-					<phase>verify</phase>
-					<goals>
-					  <goal>sign</goal>
-					</goals>
-				  </execution>
-				</executions>
-				<configuration>
-					<skip>false</skip>
-				</configuration>
-			</plugin -->
 
 		</plugins>
 	</build>

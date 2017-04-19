@@ -32,6 +32,7 @@ import com.jfinal.log.Log;
 
 /**
  * JFinal framework filter
+ * JFinal框架过滤器，需要在web.xml里面进行配置
  */
 public class JFinalFilter implements Filter {
 	
@@ -42,8 +43,13 @@ public class JFinalFilter implements Filter {
 	private static final JFinal jfinal = JFinal.me();
 	private static Log log;
 	private int contextPathLength;
-	
+
+	//初始化
 	public void init(FilterConfig filterConfig) throws ServletException {
+		/*
+		创建config,在jfinal中一般需要写一个config类继承JfinalConfig,
+		而且该类需在JFinalFilter过滤器下面的初始化配置信息中配置
+		 */
 		createJFinalConfig(filterConfig.getInitParameter("configClass"));
 		
 		if (jfinal.init(jfinalConfig, filterConfig.getServletContext()) == false) {
@@ -89,7 +95,11 @@ public class JFinalFilter implements Filter {
 		jfinalConfig.beforeJFinalStop();
 		jfinal.stopPlugins();
 	}
-	
+
+	/**
+	 * 初始化配置类
+	 * @param configClass 继承JFinalConfig的配置类
+	 */
 	private void createJFinalConfig(String configClass) {
 		if (configClass == null) {
 			throw new RuntimeException("Please set configClass parameter of JFinalFilter in web.xml");

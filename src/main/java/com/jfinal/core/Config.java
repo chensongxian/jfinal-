@@ -44,6 +44,8 @@ class Config {
 	}
 	
 	/*
+	 * 调用抽象类JFinalConfig的继承类的初始化方法（constants,routes...）
+	 * 初始化日志，引擎，开启插件
 	 * Config order: constant, route, engine, plugin, interceptor, handler
 	 */
 	static void configJFinal(JFinalConfig jfinalConfig) {
@@ -87,7 +89,10 @@ class Config {
 	public static Handlers getHandlers() {
 		return handlers;
 	}
-	
+
+	/**
+	 * 开启插件
+	 */
 	private static void startPlugins() {
 		List<IPlugin> pluginList = plugins.getPluginList();
 		if (pluginList == null) {
@@ -117,7 +122,10 @@ class Config {
 			}
 		}
 	}
-	
+
+	/**
+	 * 初始化log
+	 */
 	private static void initLogFactory() {
 		LogManager.me().init();
 		log = Log.getLog(Config.class);

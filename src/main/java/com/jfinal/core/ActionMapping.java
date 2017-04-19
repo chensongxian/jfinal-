@@ -46,7 +46,8 @@ final class ActionMapping {
 		this.routes = routes;
 		// this.interceptors = interceptors;
 	}
-	
+
+	//构建框架内置的方法名集合
 	private Set<String> buildExcludedMethodName() {
 		Set<String> excludedMethodName = new HashSet<String>();
 		Method[] methods = Controller.class.getMethods();
@@ -64,10 +65,12 @@ final class ActionMapping {
 		ret.addAll(routesList);
 		return ret;
 	}
-	
+	//将actionkey和action封装进mapping
 	void buildActionMapping() {
 		mapping.clear();
+		//要排除的方法名
 		Set<String> excludedMethodName = buildExcludedMethodName();
+
 		InterceptorManager interMan = InterceptorManager.me();
 		for (Routes routes : getRoutesList()) {
 		for (Route route : routes.getRouteItemList()) {
